@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Каталог</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<header>Каталог</header>
+
+<nav>
+    <a href="/">Головна</a>
+    <a href="/contacts/">Контакти</a>
+</nav>
+
+<div class="container">
+
+    {% for product in products %}
+        <div class="product">
+            💎 {{ product }}
+        </div>
+    {% endfor %}
+
+    <a href="/" class="btn">На головну</a>
+
+</div>
+
+</body>
+</html>
