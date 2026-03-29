@@ -10,16 +10,15 @@
 
 <header>Каталог</header>
 
-<nav>
-    <a href="/">Головна</a>
-    <a href="/contacts/">Контакти</a>
-</nav>
-
 <div class="container">
 
-    {% for product in products %}
+    <h1>Категорії</h1>
+
+    {% for category in categories %}
         <div class="product">
-            💎 {{ product }}
+            <a href="/catalog/{{ category.id }}/">
+                💎 {{ category.name }}
+            </a>
         </div>
     {% endfor %}
 
