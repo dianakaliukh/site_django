@@ -3,22 +3,72 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <title>LuxeCharm</title>
+    <title>Luxury Jewelry</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
 
-<header>LuxeCharm</header>
+<header>
+    <h2>Luxury Jewelry</h2>
+    <nav>
+        <a href="/">Головна</a>
+        <a href="/catalog/">Каталог</a>
+        <a href="/contacts/">Контакти</a>
+    </nav>
+</header>
 
-<nav>
-    <a href="/catalog/">Каталог</a>
-    <a href="/contacts/">Контакти</a>
-</nav>
+<!-- HERO -->
+<section class="hero">
 
-<div class="container">
-    <h1>Ласкаво просимо ✨</h1>
-    <p>Елегантна біжутерія для твого стилю</p>
-</div>
+    <div class="hero-text">
+        <h1>Елегантність у кожній деталі</h1>
+        <p>Ми перетворюємо благородні метали та сяючі камені на ваші персональні талісмани. Наші вироби — це симбіоз позачасової класики та сміливих сучасних трендів. Обирайте аксесуари, які стануть ідеальним продовженням вашої винятковості та створять незабутній образ.</p>
+        <a href="/catalog/" class="btn">Перейти до каталогу →</a>
+    </div>
+
+    <img src="{% static 'images/hero.jpg' %}" alt="">
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+    <div>Преміум якість</div>
+    <div>Гарантія</div>
+    <div>Доставка</div>
+    <div>Експертна підтримка 24/7</div>
+    <div>Екологічність та відповідальність</div>
+    <div>Подарунки та бонуси</div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="categories">
+    <h2>Популярні категорії</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <img src="{% static 'images/ring1.jpg' %}">
+            <h3>Золота каблучка з діамантом</h3>
+        </div>
+
+        <div class="card">
+            <img src="{% static 'images/earrings1.jpg' %}">
+            <h3>Золоті сережки "Каплі"</h3>
+        </div>
+
+        <div class="card">
+            <img src="{% static 'images/necklace1.jpg' %}">
+            <h3> Підвіска з білого золота</h3>
+        </div>
+
+        <div class="card">
+            <img src="{% static 'images/bracelet1.jpg' %}">
+            <h3>Золотий браслет з перлами</h3>
+        </div>
+
+    </div>
+</section>
 
 </body>
 </html>

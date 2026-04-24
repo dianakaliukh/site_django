@@ -4,27 +4,48 @@
 <head>
     <meta charset="UTF-8">
     <title>Каталог</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
 
-<header>Каталог</header>
+<header>
+    <h2>Luxury Jewelry</h2>
+    <nav>
+        <a href="/">Головна</a>
+        <a href="/contacts/">Контакти</a>
+    </nav>
+</header>
 
-<div class="container">
+<section class="categories">
 
-    <h1>Категорії</h1>
+    <h2>Категорії</h2>
 
-    {% for category in categories %}
-        <div class="product">
-            <a href="/catalog/{{ category.id }}/">
-                💎 {{ category.name }}
-            </a>
-        </div>
-    {% endfor %}
+    <div class="cards">
 
-    <a href="/" class="btn">На головну</a>
+        {% for category in categories %}
+        <a href="/catalog/{{ category.id }}/" class="card">
 
-</div>
+            <!-- фото (можеш міняти) -->
+            {% if category.name == "Кільця" %}
+                <img src="{% static 'images/ring.jpg' %}">
+            {% elif category.name == "Сережки" %}
+                <img src="{% static 'images/earrings.jpg' %}">
+            {% elif category.name == "Браслети" %}
+                <img src="{% static 'images/bracelet.jpg' %}">
+            {% else %}
+                <img src="{% static 'images/necklace.jpg' %}">
+            {% endif %}
+
+            <h3>{{ category.name }}</h3>
+
+        </a>
+        {% endfor %}
+
+    </div>
+
+</section>
 
 </body>
 </html>
