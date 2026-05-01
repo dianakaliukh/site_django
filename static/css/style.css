@@ -1,163 +1,261 @@
-/* ===== ОСНОВА ===== */
+/* ===== ОСНОВА (ПРЕМІУМ-СТАНДАРТ) ===== */
 body {
     margin: 0;
     font-family: 'Playfair Display', serif;
-    background: radial-gradient(circle at top, #1a1a1a, #000);
-    color: white;
+    background: #000; /* Чистий чорний для VIP-статусу */
+    color: #f1f1f1; /* М'який білий, не ріже очі */
 }
 
-/* ===== HEADER ===== */
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 50px;
+}
+
+/* ===== HEADER (ВИТОНЧЕНІСТЬ) ===== */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 80px;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding: 30px 80px;
+    background: transparent; /* Хедер має бути на фоні */
 }
 
-header h2 {
-    color: #d4af37;
+.main-logo {
+    color: #d4af37; /* Золотий як у хедері */
     font-weight: 700;
-    letter-spacing: 1px;
+    text-transform: none; /* Саме LuxeCharm */
+    margin: 0;
 }
 
-/* ===== MENU ===== */
 nav a {
     color: #d4af37;
-    margin-left: 25px;
+    margin-left: 30px;
     text-decoration: none;
-    font-size: 16px;
-    transition: 0.3s;
+    font-size: 13px;
+    letter-spacing: 2px;
+    transition: 0.3s ease;
 }
 
-nav a:hover {
-    color: white;
-}
+nav a:hover { color: white; }
 
-/* ===== HERO ===== */
+/* ===== HERO (МАСШТАБ) ===== */
 .hero {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 100px 80px;
-}
-
-/* текст */
-.hero-text {
-    max-width: 500px;
+    padding: 60px 80px;
 }
 
 .hero-text h1 {
-    font-size: 60px;
-    line-height: 1.2;
-    margin-bottom: 20px;
+    font-size: 72px; /* Збільшуємо розмір, як на фото */
+    line-height: 1.1;
+    margin-bottom: 30px;
+    font-weight: 700;
 }
 
 .hero-text p {
-    color: #aaa;
-    font-size: 18px;
-    margin-bottom: 30px;
+    color: rgba(255,255,255,0.7);
+    font-size: 16px;
+    max-width: 450px;
+    line-height: 1.6;
+    margin-bottom: 40px;
 }
 
-/* кнопка */
+/* Кнопка "Перейти до каталогу" */
 .btn {
     display: inline-block;
-    padding: 14px 35px;
-    border: 1px solid #d4af37;
+    padding: 15px 40px;
+    border: 1px solid #d4af37; /* Золота тонка рамка */
     color: #d4af37;
     text-decoration: none;
+    letter-spacing: 2px;
+    font-size: 12px;
     transition: 0.3s;
-    border-radius: 8px;
 }
 
-.btn:hover {
-    background: #d4af37;
-    color: black;
-}
+.btn:hover { background: #d4af37; color: black; }
 
-/* фото */
+/* Фото в Hero */
 .hero img {
-    width: 480px;
-    border-radius: 20px;
-    box-shadow: 0 0 40px rgba(212,175,55,0.2);
-    transition: 0.4s;
+    width: 500px; /* Збільшуємо розмір */
+    height: 500px;
+    object-fit: cover;
+    border-radius: 10px;
+    /* Тінь та світіння як на фото */
+    box-shadow: 0 0 50px rgba(212,175,55,0.1);
 }
 
-.hero img:hover {
-    transform: scale(1.03);
-}
-
-/* ===== FEATURES ===== */
+/* ===== FEATURES (ДОДАЄМО ІКОНКИ В CSS) ===== */
 .features {
     display: flex;
     justify-content: space-around;
     padding: 40px 80px;
-    border-top: 1px solid rgba(255,255,255,0.05);
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-    color: #ccc;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-/* ===== CATEGORIES ===== */
-.categories {
-    padding: 80px;
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Проміжок між іконкою та текстом */
+    font-size: 11px;
+    color: rgba(255,255,255,0.8);
+    letter-spacing: 1px;
 }
 
-.categories h2 {
-    text-align: center;
-    margin-bottom: 40px;
+/* Золоті іконки */
+.feature-item i { color: #d4af37; font-size: 18px; }
+
+/* ===== CATEGORIES (VIP-КАРТКИ) ===== */
+.categories { padding: 80px; text-align: center; }
+
+.cat-title {
+    font-size: 18px;
+    letter-spacing: 5px;
+    margin-bottom: 60px;
+    color: #fff;
+    position: relative;
+    display: inline-block;
+}
+
+/* Риска під заголовком */
+.cat-title::after {
+    content: "✦";
+    display: block;
+    font-size: 12px;
+    color: #d4af37;
+    margin-top: 10px;
+}
+
+.cards { display: flex; gap: 20px; justify-content: center; }
+
+.card {
+    width: 280px;
+    background: #0d0d0d;
+    padding: 10px;
+    border: 1px solid rgba(212, 175, 55, 0.1); /* Тонша рамка */
+    transition: 0.4s;
+}
+
+.card:hover { border-color: #d4af37; transform: translateY(-5px); }
+
+.card img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+/* Рамка навколо назви */
+.card-title-frame {
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    padding: 20px 10px;
+    margin-top: 10px;
+}
+
+.card h3 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 400;
     color: #fff;
 }
 
-/* карточки */
-.cards {
+/* ===== FOOTER (ЛАКОНІЧНІСТЬ) ===== */
+.footer {
+    padding: 60px 80px 30px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer-content {
     display: flex;
-    gap: 25px;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
 }
 
-/* одна карточка */
-.card {
-    background: #111;
-    padding: 20px;
-    border-radius: 15px;
-    transition: 0.3s;
-    width: 250px;
+.footer-logo {
+    color: #d4af37;
+    font-size: 22px;
+    font-weight: 700;
+    text-decoration: none;
 }
 
-/* ефект */
-.card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 0 25px rgba(212,175,55,0.2);
-}
+.footer-nav a { font-size: 11px; color: #888; }
+.footer-nav a:hover { color: #d4af37; }
 
-/* фото в карточці */
-.card img {
-    width: 100%;
-    border-radius: 10px;
-    margin-bottom: 10px;
-}
+.footer-bottom { text-align: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 20px; }
+.footer-copy { font-size: 10px; color: #444; letter-spacing: 1px; }
 
-/* текст */
-.card h3 {
-    color: white;
-}
-
-/* ===== АДАПТИВ (щоб не ламалось) ===== */
+/* АДАПТИВ */
 @media (max-width: 900px) {
+    .hero, .footer-content, .cards { flex-direction: column; align-items: center; }
+    .hero-text { text-align: center; margin-bottom: 40px; }
+    .hero img { width: 100%; height: auto; }
+}
+/* Загальний фон та шрифти */
+body.dark-theme {
+    background-color: #0a0a0a;
+    color: #ffffff;
+    font-family: 'Playfair Display', serif;
+}
 
-    .hero {
-        flex-direction: column;
-        text-align: center;
-    }
+/* Контейнер тепер просто список */
+.products-grid {
+    display: flex;
+    flex-direction: column; /* Картки йдуть одна під одною */
+    gap: 40px;
+    padding: 40px 0;
+}
 
-    .hero img {
-        margin-top: 30px;
-        width: 90%;
-    }
+/* Сама картка товару */
+.product-card {
+    display: flex; /* Робимо внутрішні елементи в ряд */
+    align-items: center; /* Центруємо по вертикалі */
+    background: #0d0d0d;
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    padding: 30px;
+    transition: 0.4s;
+}
 
-    .cards {
-        flex-direction: column;
-        align-items: center;
-    }
+.product-card:hover {
+    border-color: #d4af37;
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.05);
+}
 
+/* Блок з фото (зліва) */
+.product-image {
+    flex: 0 0 350px; /* Фіксована ширина для фото */
+    margin-right: 40px;
+}
+
+.product-image img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+/* Блок з описом (справа) */
+.product-info {
+    flex: 1; /* Займає весь вільний простір */
+    text-align: left; /* Текст вирівняний по лівому краю */
+}
+
+.product-info h3 {
+    font-size: 24px;
+    margin-top: 0;
+    color: #fff;
+}
+
+.product-info .price {
+    font-size: 20px;
+    margin: 20px 0;
+    font-weight: 700;
+}
+
+.product-description {
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.6;
+    margin-bottom: 25px;
 }

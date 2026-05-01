@@ -3,72 +3,113 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <title>Luxury Jewelry</title>
-
+    <title>LuxeCharm</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
 
 <header>
-    <h2>Luxury Jewelry</h2>
+    <h2 class="main-logo">LuxeCharm</h2>
     <nav>
-        <a href="/">Головна</a>
-        <a href="/catalog/">Каталог</a>
-        <a href="/contacts/">Контакти</a>
+        <a href="/">ГОЛОВНА</a>
+        <a href="/catalog/">КАТАЛОГ</a>
+        <a href="/contacts/">КОНТАКТИ</a>
     </nav>
 </header>
 
-<!-- HERO -->
 <section class="hero">
-
     <div class="hero-text">
         <h1>Елегантність у кожній деталі</h1>
         <p>Ми перетворюємо благородні метали та сяючі камені на ваші персональні талісмани. Наші вироби — це симбіоз позачасової класики та сміливих сучасних трендів. Обирайте аксесуари, які стануть ідеальним продовженням вашої винятковості та створять незабутній образ.</p>
-        <a href="/catalog/" class="btn">Перейти до каталогу →</a>
+        <a href="/catalog/" class="btn">ПЕРЕЙТИ ДО КАТАЛОГУ →</a>
     </div>
-
-    <img src="{% static 'images/hero.jpg' %}" alt="">
+    <div class="hero-img-wrapper">
+        <img src="{% static 'images/hero1.jpg' %}" alt="Jewelry">
+    </div>
 </section>
 
-<!-- FEATURES -->
 <section class="features">
-    <div>Преміум якість</div>
-    <div>Гарантія</div>
-    <div>Доставка</div>
-    <div>Експертна підтримка 24/7</div>
-    <div>Екологічність та відповідальність</div>
-    <div>Подарунки та бонуси</div>
-</section>
-
-<!-- CATEGORIES -->
-<section class="categories">
-    <h2>Популярні категорії</h2>
-
-    <div class="cards">
-
-        <div class="card">
-            <img src="{% static 'images/ring1.jpg' %}">
-            <h3>Золота каблучка з діамантом</h3>
-        </div>
-
-        <div class="card">
-            <img src="{% static 'images/earrings1.jpg' %}">
-            <h3>Золоті сережки "Каплі"</h3>
-        </div>
-
-        <div class="card">
-            <img src="{% static 'images/necklace1.jpg' %}">
-            <h3> Підвіска з білого золота</h3>
-        </div>
-
-        <div class="card">
-            <img src="{% static 'images/bracelet1.jpg' %}">
-            <h3>Золотий браслет з перлами</h3>
-        </div>
-
+    <div class="feature-item">
+        <i class="fa-regular fa-gem"></i>
+        <span>ПРЕМІУМ ЯКІСТЬ</span>
+    </div>
+    <div class="feature-item">
+        <i class="fa-regular fa-circle-check"></i>
+        <span>ГАРАНТІЯ</span>
+    </div>
+    <div class="feature-item">
+        <i class="fa-solid fa-truck-fast"></i>
+        <span>ДОСТАВКА</span>
+    </div>
+    <div class="feature-item">
+        <i class="fa-solid fa-headset"></i>
+        <span>ЕКСПЕРТНА ПІДТРИМКА 24/7</span>
+    </div>
+    <div class="feature-item">
+        <i class="fa-solid fa-leaf"></i>
+        <span>ЕКОЛОГІЧНІСТЬ</span>
+    </div>
+    <div class="feature-item">
+        <i class="fa-solid fa-gift"></i>
+        <span>БОНУСИ</span>
     </div>
 </section>
+
+<section class="categories">
+    <h2 class="cat-title">ПОПУЛЯРНІ КАТЕГОРІЇ</h2>
+    <div class="cards">
+        <div class="card">
+            <div class="card-inner">
+                <img src="{% static 'images/ring1.jpg' %}" alt="">
+                <div class="card-title-frame">
+                    <h3>Золота каблучка з діамантом</h3>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-inner">
+                <img src="{% static 'images/earrings1.jpg' %}" alt="">
+                <div class="card-title-frame">
+                    <h3>Золоті сережки "Каплі"</h3>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-inner">
+                <img src="{% static 'images/necklace1.jpg' %}" alt="">
+                <div class="card-title-frame">
+                    <h3>Підвіска з білого золота</h3>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-inner">
+                <img src="{% static 'images/bracelet1.jpg' %}" alt="">
+                <div class="card-title-frame">
+                    <h3>Золотий браслет з перлами</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-content">
+            <a href="/" class="footer-logo">LuxeCharm</a>
+            <nav class="footer-nav">
+                <a href="/">ГОЛОВНА</a>
+                <a href="/catalog/">КАТАЛОГ</a>
+                <a href="/contacts/">КОНТАКТИ</a>
+            </nav>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copy">&copy; 2026 LuxeCharm. Усі права захищені.</p>
+        </div>
+    </div>
+</footer>
 
 </body>
 </html>

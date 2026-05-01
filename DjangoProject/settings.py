@@ -86,5 +86,9 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / "site_django/../static"
+    BASE_DIR / "static",
 ]
+
+# Додаємо налаштування для медіа (щоб фото товарів з'явилися)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
