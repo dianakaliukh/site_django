@@ -1,36 +1,37 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-    <meta charset="UTF-8">
-    <title>Контакти</title>
 
-    <!-- Шрифт -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+{% block title %}Контакти | LuxeCharm{% endblock %}
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body>
+{% block content %}
+<main class="container">
+    <section class="categories"> <!-- Використовуємо існуючий клас для відступів та центрування заголовка -->
+        <h1 class="gold-text cat-title">ЗВ'ЯЖІТЬСЯ З НАМИ</h1>
 
-<header>Контакти</header>
+        <div class="product-card"> <!-- Використовуємо структуру картки для блоку контактів -->
+            <div class="product-info">
 
-<nav>
-    <a href="/">Головна</a>
-    <a href="/catalog/">Каталог</a>
-</nav>
+                <div class="feature-item">
+                    <i class="fa-solid fa-phone gold-text"></i>
+                    <p class="product-description">+380 97 593 68 99</p>
+                </div>
 
-<div class="container">
+                <div class="feature-item">
+                    <i class="fa-solid fa-envelope gold-text"></i>
+                    <p class="product-description">dianakaliukh09@gmail.com</p>
+                </div>
 
-    <h2>Зв'яжіться з нами</h2>
+                <div class="feature-item">
+                    <i class="fa-solid fa-location-dot gold-text"></i>
+                    <p class="product-description">м. Луцьк, Україна</p>
+                </div>
 
-    <p>📞 Телефон: +380975936899</p>
-    <p>📧 Email: dianakaliukh09@gmail.com</p>
-    <p>📍 Адреса: Луцьк</p>
+                <div class="category-title"> <!-- Контейнер для кнопки -->
+                    <a href="/" class="btn">НА ГОЛОВНУ</a>
+                </div>
 
-    <a href="/" class="btn">На головну</a>
-
-</div>
-
-</body>
-</html>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

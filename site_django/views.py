@@ -30,3 +30,11 @@ def products_by_category(request, category_id):
 # Контакти
 def contacts(request):
     return render(request, 'contacts.html')
+
+from django.shortcuts import render, get_object_or_404
+from .models import Product
+
+def product_detail(request, pk):
+    # Шукаємо товар, або видаємо 404, якщо не знайшли
+    product = get_object_or_404(Product, pk=pk)
+    return render(request, 'product_detail.html', {'product': product})
