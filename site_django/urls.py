@@ -1,10 +1,20 @@
 from django.urls import path
 from . import views
+
 urlpatterns = [
-    # Додаємо імена для кожного маршруту
+    # Основні сторінки
     path('', views.home, name='home'),
     path('catalog/', views.catalog, name='catalog'),
     path('catalog/<int:category_id>/', views.products_by_category, name='products_by_category'),
     path('contacts/', views.contacts, name='contacts'),
     path('product/<int:pk>/', views.product_detail, name='product_detail'),
+
+    # Кошик (Лабораторна 7)
+    path('cart/', views.cart_detail, name='cart_detail'),
+    path('cart/add/<int:product_id>/', views.cart_add, name='cart_add'),
+    path('cart/remove/<int:product_id>/', views.cart_remove, name='cart_remove'),
+
+    # Відгуки та Розсилка (Лабораторна 7)
+    path('product/<int:product_id>/review/', views.add_review, name='add_review'),
+    path('subscribe/', views.subscribe_newsletter, name='subscribe_newsletter'),
 ]

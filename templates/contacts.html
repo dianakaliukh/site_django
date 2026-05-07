@@ -4,34 +4,68 @@
 {% block title %}Контакти | LuxeCharm{% endblock %}
 
 {% block content %}
-<main class="container">
-    <section class="categories"> <!-- Використовуємо існуючий клас для відступів та центрування заголовка -->
-        <h1 class="gold-text cat-title">ЗВ'ЯЖІТЬСЯ З НАМИ</h1>
+<section class="contacts-page">
+    <div class="container">
+        <h1 class="cat-title">ЗВ'ЯЖІТЬСЯ З НАМИ</h1>
 
-        <div class="product-card"> <!-- Використовуємо структуру картки для блоку контактів -->
-            <div class="product-info">
+        <p class="contacts-intro">
+            Ми завжди готові допомогти вам обрати ідеальну прикрасу або обговорити індивідуальне замовлення.
+        </p>
 
-                <div class="feature-item">
-                    <i class="fa-solid fa-phone gold-text"></i>
-                    <p class="product-description">+380 97 593 68 99</p>
+        <div class="contacts-grid-main">
+
+            <div class="contacts-column">
+                <div class="contact-item-new">
+                    <i class="fas fa-phone-alt gold-icon-large"></i>
+                    <div class="item-det">
+                        <span class="label-small">Телефон</span>
+                        <a href="tel:+380975936899" class="data-link">+380 97 593 68 99</a>
+                    </div>
                 </div>
 
-                <div class="feature-item">
-                    <i class="fa-solid fa-envelope gold-text"></i>
-                    <p class="product-description">dianakaliukh09@gmail.com</p>
+                <div class="contact-item-new">
+                    <i class="far fa-envelope gold-icon-large"></i>
+                    <div class="item-det">
+                        <span class="label-small">Email</span>
+                        <a href="mailto:dianakaliukho9@gmail.com" class="data-link">dianakaliukho9@gmail.com</a>
+                    </div>
                 </div>
 
-                <div class="feature-item">
-                    <i class="fa-solid fa-location-dot gold-text"></i>
-                    <p class="product-description">м. Луцьк, Україна</p>
+                <div class="contact-item-new">
+                    <i class="fas fa-map-marker-alt gold-icon-large"></i>
+                    <div class="item-det">
+                        <span class="label-small">Локація</span>
+                        <strong class="data-text">м. Луцьк, Україна</strong>
+                    </div>
                 </div>
-
-                <div class="category-title"> <!-- Контейнер для кнопки -->
-                    <a href="{% url 'home' %}" class="luxe-btn">На головну</a>
-                </div>
-
             </div>
+
+            <div class="contacts-column">
+                <div class="extra-info-box">
+                    <h3 class="box-title">Графік роботи</h3>
+                    <div class="schedule-list">
+                        <p>Пн – Пт: <span>10:00 — 20:00</span></p>
+                        <p>Сб – Нд: <span>11:00 — 18:00</span></p>
+                    </div>
+                    <span class="work-status">Працюємо без перерви</span>
+                </div>
+
+                <div class="extra-info-box">
+                    <h3 class="box-title">Ми у соцмережах</h3>
+                    <p class="label-small" style="margin-bottom: 15px;">Слідкуйте за новинками:</p>
+                    <div class="social-grid-large">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-telegram-plane"></i></a>
+                    </div>
+                </div>
+            </div>
+
         </div>
-    </section>
-</main>
+
+        <div class="contacts-footer-action">
+            <a href="{% url 'home' %}" class="luxe-btn">На головну</a>
+        </div>
+    </div>
+</section>
 {% endblock %}

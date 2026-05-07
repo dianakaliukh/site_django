@@ -5,48 +5,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}LuxeCharm{% endblock %}</title>
-
-    <!-- Зовнішні ресурси -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-
-    <!-- Твій єдиний файл стилів -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-
-    {% block extra_head %}{% endblock %}
 </head>
 <body class="dark-theme">
 
-<header>
-    <div class="container header-content">
-        <h2 class="main-logo">LuxeCharm</h2>
-        <nav>
-            <a href="/">ГОЛОВНА</a>
-            <a href="/catalog/">КАТАЛОГ</a>
-            <a href="/contacts/">КОНТАКТИ</a>
-        </nav>
-    </div>
-</header>
+    <div class="app-container">
+        <header class="main-header">
+            <div class="container header-content">
+                <a href="{% url 'home' %}" class="main-logo">LuxeCharm</a>
+                <nav class="main-nav">
+                    <a href="{% url 'home' %}">ГОЛОВНА</a>
+                    <a href="{% url 'catalog' %}">КАТАЛОГ</a>
+                    <a href="{% url 'contacts' %}">КОНТАКТИ</a>
+                    <a href="{% url 'cart_detail' %}" class="cart-nav-link">
+                        <i class="fas fa-shopping-bag"></i> КОШИК
+                    </a>
+                </nav>
+            </div>
+        </header>
 
-<main>
-    {% block content %}{% endblock %}
-</main>
+        {% if messages %}
+            <div class="container messages-container">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
 
-<footer class="footer">
-    <div class="container">
-        <div class="footer-content">
-            <a href="/" class="footer-logo">LuxeCharm</a>
-            <nav class="footer-nav">
-                <a href="/">ГОЛОВНА</a>
-                <a href="/catalog/">КАТАЛОГ</a>
-                <a href="/contacts/">КОНТАКТИ</a>
-            </nav>
-        </div>
-        <div class="footer-bottom">
-            <p class="footer-copy">&copy; 2026 LuxeCharm. Усі права захищені.</p>
-        </div>
+        <main class="main-content">
+            {% block content %}{% endblock %}
+        </main>
+
+        <section class="newsletter-section">
+            <div class="container">
+                <div class="newsletter-box">
+                    <h2 class="cat-title">ПРИЄДНУЙТЕСЬ ДО LUXECHARM</h2>
+                    <p>Залиште свій Email, щоб першими отримувати інформацію про нові колекції та закриті розпродажі.</p>
+                    <form action="{% url 'subscribe_newsletter' %}" method="POST" class="newsletter-form">
+                        {% csrf_token %}
+                        <input type="email" name="email" placeholder="Ваш Email" required>
+                        <button type="submit" class="luxe-btn">Підписатися</button>
+                    </form>
+                </div>
+            </div>
+        </section>
     </div>
-</footer>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <a href="{% url 'home' %}" class="footer-logo">LuxeCharm</a>
+                <nav class="footer-nav">
+                    <a href="{% url 'home' %}">ГОЛОВНА</a>
+                    <a href="{% url 'catalog' %}">КАТАЛОГ</a>
+                    <a href="{% url 'contacts' %}">КОНТАКТИ</a>
+                </nav>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copy">&copy; 2026 LuxeCharm. Усі права захищені.</p>
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>

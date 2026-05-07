@@ -4,31 +4,40 @@
 {% block title %}Каталог | LuxeCharm{% endblock %}
 
 {% block content %}
-<!-- Додано клас catalog-section, щоб спрацював CSS -->
 <section class="categories catalog-section">
     <div class="container">
         <h2 class="cat-title">КАТЕГОРІЇ</h2>
 
         <div class="cards">
             {% for category in categories %}
-            <!-- Додано клас card-title-link для правильної підсвітки -->
-            <a href="/catalog/{{ category.id }}/" class="card card-title-link">
-                <div class="card-inner">
-                    {% if category.name == "Кільця" %}
-                        <img src="{% static 'images/ring.jpg' %}" alt="Кільця">
-                    {% elif category.name == "Сережки" %}
-                        <img src="{% static 'images/earrings.jpg' %}" alt="Сережки">
-                    {% elif category.name == "Браслети" %}
-                        <img src="{% static 'images/bracelet.jpg' %}" alt="Браслети">
-                    {% else %}
-                        <img src="{% static 'images/necklace.jpg' %}" alt="Підвіски">
-                    {% endif %}
+            <div class="card">
+                <a href="{% url 'products_by_category' category.id %}" class="card-main-link">
+                    <div class="card-inner">
+                        {% if category.image %}
+                            <img src="{{ category.image.url }}" alt="{{ category.name }}">
+                        {% else %}
+                            {# Автоматичний підбір статичного фото, якщо в базі немає картинки #}
+                            {% if category.name == "Кільця" %}
+                                <img src="{% static 'images/ring.jpg' %}" alt="Кільця">
+                            {% elif category.name == "Сережки" %}
+                                <img src="{% static 'images/earrings.jpg' %}" alt="Сережки">
+                            {% elif category.name == "Браслети" %}
+                                <img src="{% static 'images/bracelet.jpg' %}" alt="Браслети">
+                            {% else %}
+                                <img src="{% static 'images/necklace.jpg' %}" alt="Категорія">
+                            {% endif %}
+                        {% endif %}
 
-                    <div class="card-title-frame">
-                        <h3>{{ category.name }}</h3>
+                        <div class="card-title-frame">
+                            <h3>{{ category.name|upper }}</h3>
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
+            </div>
+            {% empty %}
+            <div style="text-align: center; width: 100%; padding: 50px 0;">
+                <p style="color: #666; font-style: italic;">Категорії поки що не створені.</p>
+            </div>
             {% endfor %}
         </div>
     </div>

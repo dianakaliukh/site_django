@@ -1,54 +1,80 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ product.name }} | LuxeCharm</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body class="dark-theme">
 
-<header class="main-header">
-    <div class="container header-content">
-        <h2 class="gold-text">LuxeCharm</h2>
-        <nav>
-            <a href="{% url 'home' %}" class="nav-link">Головна</a>
-            <a href="{% url 'catalog' %}" class="nav-link">Каталог</a>
-        </nav>
-    </div>
-</header>
+{% block title %}{{ product.name }} | LuxeCharm{% endblock %}
 
-<div class="container">
-    <div class="product-detail-flex">
-        <!-- Фото -->
-        <div class="product-detail-image">
-            {% if product.image %}
-                <img src="{{ product.image.url }}" alt="{{ product.name }}">
-            {% else %}
-                <div class="image-placeholder-box">Фото очікується</div>
-            {% endif %}
+{% block content %}
+<section class="product-page">
+    <div class="container">
+        <div class="breadcrumb-nav">
+            <a href="{% url 'catalog' %}" class="back-link">← Повернутися до каталогу</a>
         </div>
 
-        <!-- Опис -->
-        <div class="product-detail-info">
-            <h1 class="gold-text">{{ product.name }}</h1>
-            <p class="detail-price">Ціна: {{ product.price }} грн</p>
-
-            <div class="detail-description">
-                <h3 class="desc-title">Детальний опис товару:</h3>
-                <p class="desc-text">{{ product.description }}</p>
+        <div class="product-detail-flex">
+            <div class="product-detail-image">
+                <div class="image-inner-frame">
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                    {% else %}
+                        <div class="image-placeholder">Фото виробу очікується</div>
+                    {% endif %}
+                </div>
             </div>
 
-            <!-- Універсальна кнопка -->
-            <button class="luxe-btn">Додати у кошик</button>
+            <div class="product-detail-info">
+                <h1 class="product-main-title">{{ product.name }}</h1>
+
+                <div class="rating-display-box">
+                    <span class="stars-gold">
+                        {% if average_rating > 0 %}
+                            {{ average_rating }} ★
+                        {% else %}
+                            Немає оцінок
+                        {% endif %}
+                    </span>
+                    <span class="rating-count">Середній бал користувачів</span>
+                </div>
+
+                <div class="price-box">
+                    <span class="price-label">Вартість:</span>
+                    <span class="price-amount">{{ product.price }} грн</span>
+                </div>
+
+                <div class="detail-description">
+                    <h3 class="desc-title">Опис товару:</h3>
+                    <div class="desc-text">
+                        {% if product.description %}
+                            {{ product.description|linebreaks }}
+                        {% else %}
+                            <p>Цей ексклюзивний ювелірний виріб виготовлений за найвищими стандартами якості LuxeCharm.</p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <a href="{% url 'cart_add' product.id %}" class="luxe-btn buy-btn">Додати в кошик</a>
+
+                    <div class="review-form-container">
+                        <h3 class="desc-title">Оцінити виріб:</h3>
+                        <form action="{% url 'add_review' product.id %}" method="POST" class="rating-form">
+                            {% csrf_token %}
+                            <div class="rating-select-wrapper">
+                                <select name="rating" required class="luxe-select-input">
+                                    <option value="5">5 ★ — Досконало</option>
+                                    <option value="4">4 ★ — Чудово</option>
+                                    <option value="3">3 ★ — Добре</option>
+                                    <option value="2">2 ★ — Посередньо</option>
+                                    <option value="1">1 ★ — Не сподобалось</option>
+                                </select>
+                                <button type="submit" class="luxe-btn btn-small">Надіслати</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <p class="delivery-info">Оплата при отриманні | Безкоштовна доставка</p>
+                </div>
+            </div>
         </div>
     </div>
-
-    <div class="back-link-container">
-        <a href="{% url 'catalog' %}" class="back-to-list-link">← Повернутися до списку</a>
-    </div>
-</div>
-
-</body>
-</html>
+</section>
+{% endblock %}

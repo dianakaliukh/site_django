@@ -1,104 +1,46 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}LuxeCharm | Головна{% endblock %}
+{% block title %}LuxeCharm | Ексклюзивні ювелірні вироби{% endblock %}
 
 {% block content %}
-<!-- Секція Hero -->
 <section class="hero">
     <div class="container hero-container">
         <div class="hero-text">
-            <h1>Елегантність у кожній деталі</h1>
-            <p>Ми перетворюємо благородні метали та сяючі камені на ваші персональні талісмани. Наші вироби — це симбіоз позачасової класики та сміливих сучасних трендів. Обирайте аксесуари, які стануть ідеальним продовженням вашої винятковості.</p>
+            <h1>LuxeCharm — гармонія розкоші та стилю</h1>
+            <p>Ми перетворюємо благородні метали та сяючі камені на ваші персональні талісмани — прикраси, що зберігають емоції, спогади та особливі моменти життя. Кожен виріб створюється з увагою до деталей, щоб підкреслити вашу індивідуальність, стиль і внутрішню силу. Для нас ювелірні прикраси — це не просто аксесуари, а символи кохання, успіху, натхнення та вашої унікальної історії.</p>
             <a href="{% url 'catalog' %}" class="luxe-btn">Перейти до каталогу</a>
         </div>
         <div class="hero-img-wrapper">
-            <img src="{% static 'images/hero1.jpg' %}" alt="Jewelry">
+            <img src="{% static 'images/hero1.jpg' %}" alt="Ювелірна колекція LuxeCharm">
         </div>
     </div>
 </section>
 
-<!-- Секція переваг -->
-<section class="features-section">
-    <div class="container features">
-        <div class="feature-item">
-            <i class="fa-regular fa-gem"></i>
-            <span>ПРЕМІУМ ЯКІСТЬ</span>
-        </div>
-        <div class="feature-item">
-            <i class="fa-regular fa-circle-check"></i>
-            <span>ГАРАНТІЯ</span>
-        </div>
-        <div class="feature-item">
-            <i class="fa-solid fa-truck-fast"></i>
-            <span>ДОСТАВКА</span>
-        </div>
-        <div class="feature-item">
-            <i class="fa-solid fa-headset"></i>
-            <span>ПІДТРИМКА 24/7</span>
-        </div>
-        <div class="feature-item">
-            <i class="fa-solid fa-leaf"></i>
-            <span>ЕКОЛОГІЧНІСТЬ</span>
-        </div>
-        <div class="feature-item">
-            <i class="fa-solid fa-gift"></i>
-            <span>БОНУСИ</span>
-        </div>
-    </div>
-</section>
-
-<!-- Категорії -->
-<section class="categories popular-section"> <!-- Додано клас для ідентифікації в CSS -->
+<section class="categories popular-section">
     <div class="container">
         <h2 class="cat-title">ПОПУЛЯРНІ КАТЕГОРІЇ</h2>
-        <div class="cards">
 
-            <div class="card">
-                <div class="card-inner">
-                    <img src="{% static 'images/ring11.jpg' %}" alt="Кільця">
-                    <!-- Посилання тепер тільки на кнопці-назві -->
-                    <a href="{% url 'product_detail' 1 %}" class="card-title-link">
-                        <div class="card-title-frame">
-                            <h3>Золота каблучка з діамантом</h3>
+        <div class="cards popular-cards-grid">
+            {% for product in popular_products|slice:":4" %} <div class="card">
+                <a href="{% url 'product_detail' product.id %}" class="card-main-link">
+                    <div class="card-inner">
+                        <div class="image-box">
+                            {% if product.image %}
+                                <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                            {% else %}
+                                <img src="{% static 'images/necklace.jpg' %}" alt="Товар">
+                            {% endif %}
                         </div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-inner">
-                    <img src="{% static 'images/earrings1.jpg' %}" alt="Сережки">
-                    <a href="{% url 'product_detail' 10 %}" class="card-title-link">
                         <div class="card-title-frame">
-                            <h3>Золоті сережки "Каплі"</h3>
+                            <h3>{{ product.name }}</h3>
                         </div>
-                    </a>
-                </div>
+                    </div>
+                </a>
             </div>
-
-            <div class="card">
-                <div class="card-inner">
-                    <img src="{% static 'images/1234.jpg' %}" alt="Підвіски">
-                    <a href="{% url 'product_detail' 34 %}" class="card-title-link">
-                        <div class="card-title-frame">
-                            <h3>Підвіска з білого золота</h3>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-inner">
-                    <img src="{% static 'images/bracelet1.jpg' %}" alt="Браслети">
-                    <a href="{% url 'product_detail' 24 %}" class="card-title-link">
-                        <div class="card-title-frame">
-                            <h3>Золотий браслет з перлами</h3>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
+            {% empty %}
+            <p class="empty-msg">Наразі популярних товарів не знайдено.</p>
+            {% endfor %}
         </div>
     </div>
 </section>

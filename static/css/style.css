@@ -1,458 +1,292 @@
-/* ===== 1. ОСНОВА ТА ШРИФТИ ===== */
+/* ===== УНІВЕРСАЛЬНЕ ВИРІВНЮВАННЯ ІНТЕРВАЛІВ ===== */
+
+/* 1. Відступи для всіх секцій (щоб контент не злипався з хедером і футером) */
+section {
+    padding: 80px 0 !important; /* Однаковий відступ зверху і знизу для всіх сторінок */
+}
+
+/* 2. Заголовки сторінок (КАТАЛОГ, КОНТАКТИ, НАЗВА КАТЕГОРІЇ) */
+.cat-title {
+    margin-bottom: 60px !important; /* Завжди однакова відстань від заголовка до контенту */
+    letter-spacing: 5px;
+}
+
+/* 3. Відступи в сітках (Головна та Каталог) */
+.cards {
+    gap: 40px !important; /* Однаковий простір між картками всюди */
+}
+
+/* 4. Вирівнювання текстових абзаців всюди */
+p {
+    line-height: 1.7; /* Робимо текст легким для читання */
+    margin-bottom: 20px; /* Відступ між абзацами */
+}
+
+/* 5. Відступи для кнопок (щоб вони не прилипали до тексту зверху) */
+.luxe-btn {
+    margin-top: 10px;
+}
+
+/* 6. Контейнер кошика та таблиці (якщо вони занадто щільні) */
+.cart-page .container,
+.contacts-page .container {
+    padding-top: 20px;
+}
+
+/* 7. Фікс для Hero-секції на головній */
+.hero {
+    padding: 100px 0 !important; /* Трохи більше простору для першого екрана */
+}
+/* ===== 1. БАЗОВА СТРУКТУРА ТА STICKY FOOTER ===== */
 * {
     box-sizing: border-box;
-    outline: none;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
 }
 
 body {
-    margin: 0;
     font-family: 'Playfair Display', serif;
     background: #000;
     color: #f1f1f1;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     overflow-x: hidden;
+}
+
+.app-container {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
 }
 
 a {
     text-decoration: none !important;
     color: inherit;
+    transition: 0.3s ease;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.gold-text {
+/* ===== 2. УНІВЕРСАЛЬНА КНОПКА LUXE ===== */
+.luxe-btn {
+    display: inline-block !important;
+    padding: 14px 35px !important;
+    border: 1px solid #d4af37 !important;
     color: #d4af37 !important;
+    text-transform: uppercase !important;
+    font-size: 11px !important;
+    letter-spacing: 2px !important;
+    background: transparent !important;
+    transition: all 0.4s ease !important;
+    cursor: pointer !important;
+    text-align: center;
 }
 
-/* ===== 2. HEADER ===== */
-header {
-    width: 100%;
-    border-bottom: 1px solid #111;
+.luxe-btn:hover {
+    background: #d4af37 !important;
+    color: #000 !important;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+}
+
+/* ===== 3. ХЕДЕР (ШАПКА) ===== */
+.main-header {
+    flex-shrink: 0;
+    padding: 25px 0;
+    border-bottom: 1px solid #1a1a1a;
 }
 
 .header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 0;
 }
 
 .main-logo {
-    color: #d4af37;
-    font-weight: 700;
+    color: #d4af37 !important;
     font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
 nav a {
-    color: #d4af37;
     margin-left: 30px;
     font-size: 13px;
-    letter-spacing: 2px;
-    transition: 0.3s ease;
+    color: #d4af37 !important;
+    letter-spacing: 1px;
     text-transform: uppercase;
 }
 
-nav a:hover { color: white; }
+nav a:hover { color: #fff !important; }
 
-/* ===== 3. HERO СЕКЦІЯ (ФІКС КВАДРАТА) ===== */
-.hero { padding: 60px 0; }
-.hero-container { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
-.hero-text h1 { font-size: 64px; line-height: 1.1; margin-bottom: 30px; font-weight: 700; }
-.hero-text p { color: rgba(255,255,255,0.7); font-size: 16px; line-height: 1.6; margin-bottom: 40px; }
-
-.hero-img-wrapper {
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
+.cart-nav-link i {
+    margin-right: 5px;
+    color: #d4af37;
 }
 
-.hero-img-wrapper img {
-    width: 500px !important; /* Жорстка фіксація ширини */
-    height: 500px !important; /* Жорстка фіксація висоти */
-    object-fit: cover !important;
-    border-radius: 10px;
-    box-shadow: 0 0 50px rgba(212,175,55,0.1);
-}
+/* ===== 4. HERO СЕКЦІЯ ===== */
+.hero { padding: 80px 0; flex-shrink: 0; }
+.hero-container { display: flex; align-items: center; justify-content: space-between; gap: 60px; }
+.hero-text h1 { font-size: 48px; line-height: 1.1; margin-bottom: 25px; text-transform: uppercase; }
+.hero-text p { font-size: 15px; color: #aaa; margin-bottom: 35px; max-width: 450px; }
+.hero-img-wrapper img { width: 450px; height: 450px; object-fit: cover; border: 1px solid #1a1a1a; }
 
-/* ===== 4. FEATURES (РЯДОК ПЕРЕВАГ - ВУЗЬКИЙ) ===== */
-.features-section {
-    border-top: 1px solid rgba(255,255,255,0.1);
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    margin: 40px 0 !important;
-    background: #050505;
-}
-
-.features {
-    display: flex;
-    justify-content: space-around;
-    padding: 30px 0 !important; /* Зменшений відступ для вузького рядка */
-}
-
-.feature-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    font-size: 11px;
-    color: rgba(255,255,255,0.8);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-}
-
-.feature-item i {
-    color: #fff !important;
-    font-size: 20px;
-    text-shadow: none !important;
-}
-
-/* ===== 5. КАТЕГОРІЇ ТА КАРТКИ ===== */
-.categories { padding: 60px 0; text-align: center; }
-.cat-title { font-size: 18px; letter-spacing: 5px; margin-bottom: 60px; color: #fff; text-transform: uppercase; }
-.cards { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
-.card { flex: 1; min-width: 250px; max-width: 280px; }
+/* ===== 5. КАРТКИ (ВЕРТИКАЛЬНІ) ===== */
+.popular-section { padding: 40px 0 100px; }
+.cat-title { text-align: center; color: #d4af37; margin-bottom: 50px; letter-spacing: 4px; text-transform: uppercase; font-size: 20px; }
+.cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; }
 
 .card-inner {
     background: #0d0d0d;
-    padding: 15px;
-    border: 1px solid rgba(212, 175, 55, 0.1);
-    transition: all 0.3s ease;
-}
-
-.card img { width: 100%; height: 350px; object-fit: cover; }
-
-.card-title-frame {
-    border: 1px solid rgba(212, 175, 55, 0.3) !important;
-    padding: 15px;
-    margin-top: 15px;
-    transition: all 0.3s ease !important;
-    display: block;
-    text-align: center;
-}
-
-.card h3 {
-    margin: 0;
-    font-size: 14px;
-    color: #fff;
-    text-transform: uppercase;
-    transition: 0.3s;
-}
-
-/* --- ГОЛОВНА (ПОПУЛЯРНІ): ПІДСВІТКА ТІЛЬКИ КНОПКИ --- */
-/* Тут ми використовуємо селектор .card-title-link:hover, щоб ефект був лише при наведенні на назву */
-.popular-section .card-title-link:hover .card-title-frame {
-    border-color: #d4af37 !important;
-    background-color: rgba(212, 175, 55, 0.1) !important;
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.3) !important;
-}
-
-.popular-section .card-title-link:hover h3 {
-    color: #ffffff !important;
-    text-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
-}
-
-/* --- КАТАЛОГ: ПОВНА ПІДСВІТКА КАРТКИ --- */
-/* Тут ми використовуємо .catalog-section .card:hover, щоб підсвічувалося все разом */
-.catalog-section .card:hover .card-inner {
-    border-color: #d4af37 !important;
-    transform: translateY(-8px);
-    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3) !important;
-}
-
-.catalog-section .card:hover .card-title-frame {
-    border-color: #d4af37 !important;
-    background-color: rgba(212, 175, 55, 0.15) !important;
-}
-
-.catalog-section .card:hover h3 {
-    color: #ffffff !important;
-    text-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
-}
-/* ===== 6. СТОРІНКА ТОВАРІВ ===== */
-.product-card {
+    border: 1px solid #1a1a1a;
+    padding: 12px;
+    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    height: 100%;
     display: flex;
-    background: #0d0d0d;
-    border: 1px solid rgba(212, 175, 55, 0.1);
-    margin-bottom: 40px;
+    flex-direction: column;
 }
 
-.product-image { flex: 0 0 350px; }
-.product-image img { width: 100%; height: 350px; object-fit: cover; }
-.product-info { flex: 1; padding: 40px; display: flex; flex-direction: column; justify-content: center; }
-.price { font-size: 22px; color: #d4af37; font-weight: 700; margin-bottom: 25px; }
+.card img { width: 100%; height: 380px; object-fit: cover; margin-bottom: 15px; display: block; }
+.card-title-frame { border: 1px solid #d4af37; padding: 18px 5px; text-align: center; margin-top: auto; transition: 0.3s ease; }
+.card h3 { color: #d4af37 !important; font-size: 12px; letter-spacing: 1px; margin: 0; text-transform: uppercase; }
 
-.product-buttons { display: flex; gap: 15px; }
-.btn-buy, .btn-detail-outline {
-    display: inline-block;
-    padding: 12px 30px;
-    font-size: 11px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    text-align: center;
-    border: 1px solid #d4af37;
-    background: transparent;
-    transition: 0.3s;
-    min-width: 160px;
-    cursor: pointer;
+.card-main-link:hover .card-inner { border-color: #d4af37; transform: translateY(-8px); box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2); }
+.card-main-link:hover .card-title-frame { background: #d4af37; }
+.card-main-link:hover h3 { color: #000 !important; font-weight: bold; }
+
+/* ===== 6. ГОРИЗОНТАЛЬНІ КАРТКИ (Список товарів) ===== */
+.product-horizontal-list { display: flex !important; flex-direction: column !important; gap: 30px !important; padding: 40px 0 !important; }
+.product-horizontal-card { display: flex !important; background: #0d0d0d !important; border: 1px solid #1a1a1a !important; height: 280px !important; overflow: hidden !important; transition: 0.4s ease !important; }
+.product-img-side { flex: 0 0 350px !important; height: 100% !important; overflow: hidden; }
+.product-img-side img { width: 100% !important; height: 100% !important; object-fit: cover !important; transition: 0.5s ease; }
+.product-info-side { flex: 1 !important; padding: 30px !important; display: flex !important; flex-direction: column !important; justify-content: center !important; }
+.product-info-side h3 { color: #d4af37 !important; text-transform: uppercase !important; margin-bottom: 15px !important; }
+.product-price { color: #fff !important; font-size: 20px !important; font-weight: bold !important; }
+
+/* Ефекти для горизонтальної картки */
+.product-card-link:hover .product-horizontal-card {
+    border-color: #d4af37 !important;
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.2) !important;
+    transform: translateX(10px) !important;
 }
+.product-card-link:hover .product-img-side img { transform: scale(1.05); }
 
-.btn-buy:disabled { border-color: #333; color: #555; cursor: not-allowed; }
-.btn-detail-outline { color: #d4af37; border-color: #d4af37; }
-.btn-detail-outline:hover { background: #d4af37; color: #000; }
+/* ===== 7. СТОРІНКА ДЕТАЛЕЙ (РЕЙТИНГ ТА ІНТЕРВАЛИ) ===== */
+.product-page { padding: 40px 0 100px; }
+.product-detail-flex { display: flex; gap: 80px; align-items: flex-start; }
+.product-detail-image { flex: 1; position: relative; }
+.image-inner-frame { border: 1px solid #1a1a1a; padding: 15px; background: #0d0d0d; }
+.product-detail-image img { width: 100%; height: auto; display: block; border: 1px solid rgba(212, 175, 55, 0.1); }
 
-/* ===== 7. FOOTER ===== */
-.footer { padding: 60px 0 30px; border-top: 1px solid rgba(255,255,255,0.1); }
-.footer-content { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
-.footer-logo { color: #d4af37; font-weight: 700; font-size: 20px; }
-.footer-nav a { font-size: 11px; color: #888; margin-left: 20px; }
-.footer-bottom { text-align: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 20px; }
-.footer-copy { font-size: 10px; color: #444; }
+.product-detail-info { flex: 1; display: flex; flex-direction: column; gap: 30px; }
+.product-main-title { font-size: 36px; color: #fff; text-transform: uppercase; line-height: 1.2; letter-spacing: 2px; }
 
-/* ===== 8. АДАПТИВНІСТЬ ===== */
-@media (max-width: 900px) {
-    .hero-container, .product-card, .footer-content { flex-direction: column; text-align: center; }
-    .hero-img-wrapper, .product-image { width: 100% !important; }
-    .hero-img-wrapper img { width: 100% !important; height: auto !important; }
-    .product-info { padding: 30px 20px; align-items: center; }
-    .product-buttons { flex-direction: column; width: 100%; }
-    .btn-buy, .btn-detail-outline { width: 100%; }
-    .features { padding: 20px 0 !important; }
-}
+.price-box { padding: 15px 0; border-top: 1px solid #1a1a1a; border-bottom: 1px solid #1a1a1a; }
+.price-amount { color: #d4af37; font-size: 28px; font-weight: bold; }
 
-.no-photo-box {
-    width: 100%; height: 100%; min-height: 400px;
-    display: flex; align-items: center; justify-content: center;
-    background: #1a1a1a; color: #444;
-}
+.rating-display-box { display: flex; align-items: center; gap: 15px; }
+.stars-gold { color: #d4af37; font-size: 20px; font-weight: bold; }
+.rating-count { color: #666; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
 
-/* ===== 1. ОСНОВА ТА ШРИФТИ ===== */
-* {
-    box-sizing: border-box;
-    outline: none;
-}
+.detail-description { display: flex; flex-direction: column; gap: 15px; }
+.desc-title { color: #d4af37; text-transform: uppercase; font-size: 14px; letter-spacing: 2px; }
+.desc-text { color: #ccc; font-size: 16px; line-height: 1.8; }
 
-body {
-    margin: 0;
-    font-family: 'Playfair Display', serif;
-    background: #000;
-    color: #f1f1f1;
-    overflow-x: hidden;
-    line-height: 1.6;
-}
+.action-buttons { display: flex; flex-direction: column; gap: 25px; }
+.buy-btn { width: 100% !important; font-weight: bold; }
 
-a { text-decoration: none !important; transition: 0.3s; }
+.review-form-container { padding-top: 25px; border-top: 1px solid #1a1a1a; display: flex; flex-direction: column; gap: 15px; }
+.rating-select-wrapper { display: flex; gap: 10px; }
+.luxe-select-input { background: #000; color: #d4af37; border: 1px solid #d4af37; padding: 10px; font-family: 'Playfair Display', serif; outline: none; flex: 1; }
+.btn-small { padding: 10px 20px !important; font-size: 10px !important; }
 
-.container {
-    max-width: 1200px;
+.delivery-info { font-size: 11px; color: #555; text-align: center; text-transform: uppercase; letter-spacing: 1px; border-top: 1px dotted #1a1a1a; padding-top: 10px; }
+
+/* ===== 8. КОШИК (CART PAGE) ===== */
+.cart-page { padding: 60px 0 100px; }
+.cart-table { width: 100%; border-collapse: collapse; margin-bottom: 40px; }
+.cart-table th { text-align: left; padding: 20px; border-bottom: 1px solid #d4af37; color: #d4af37; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; }
+.cart-table td { padding: 20px; border-bottom: 1px solid #1a1a1a; vertical-align: middle; }
+.cart-item-img { width: 80px; height: 80px; object-fit: cover; border: 1px solid #1a1a1a; }
+.remove-link { color: #ff4d4d !important; font-size: 11px; text-transform: uppercase; }
+.cart-summary { text-align: right; border-top: 1px solid #d4af37; padding-top: 30px; }
+.total-label { font-size: 18px; color: #888; margin-right: 20px; }
+.total-amount { font-size: 32px; color: #fff; font-weight: bold; }
+
+/* ===== 9. РОЗСИЛКА (NEWSLETTER) ===== */
+.newsletter-section { padding: 80px 0; background: #050505; border-top: 1px solid #1a1a1a; text-align: center; }
+.newsletter-box { max-width: 600px; margin: 0 auto; }
+.newsletter-box p { color: #888; margin-bottom: 30px; font-size: 15px; }
+.newsletter-form { display: flex; gap: 10px; justify-content: center; }
+.newsletter-form input { flex: 1; padding: 15px; background: transparent; border: 1px solid #333; color: #fff; outline: none; transition: 0.3s; }
+.newsletter-form input:focus { border-color: #d4af37; }
+
+/* ===== 10. ПОВІДОМЛЕННЯ (ALERTS) ===== */
+.messages-container { margin-top: 20px; }
+.alert { padding: 15px 25px; margin-bottom: 20px; border: 1px solid #d4af37; background: rgba(212, 175, 55, 0.1); color: #d4af37; text-align: center; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; }
+
+/* ===== 11. КОНТАКТИ ===== */
+.contacts-page { padding: 80px 0 120px; }
+.contacts-intro { text-align: center; max-width: 650px; margin: 0 auto 60px; color: #888; font-style: italic; font-size: 16px; }
+
+.contacts-grid-main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    max-width: 1000px;
     margin: 0 auto;
-    padding: 0 20px;
+    border-top: 1px solid #1a1a1a;
+    padding-top: 60px;
 }
 
-.gold-text { color: #d4af37 !important; }
+.contact-item-new { display: flex; align-items: center; gap: 25px; margin-bottom: 35px; }
+.gold-icon-large { font-size: 28px; color: #d4af37; width: 40px; text-align: center; }
+.label-small { display: block; font-size: 10px; text-transform: uppercase; color: #555; letter-spacing: 2px; margin-bottom: 5px; }
+.data-link, .data-text { font-size: 18px; color: #d4af37 !important; font-weight: bold; letter-spacing: 1px; }
+.data-link:hover { color: #fff !important; }
 
-/* ===== 2. УНІВЕРСАЛЬНА КНОПКА (Для всіх сторінок) ===== */
-/* Використовуйте клас luxe-btn для всіх кнопок на сайті */
-.luxe-btn {
-    display: inline-block;
-    padding: 15px 45px;
-    border: 1px solid #d4af37;
-    color: #d4af37 !important;
-    background: transparent;
-    font-size: 12px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.4s ease;
-    text-align: center;
+.extra-info-box { background: #080808; padding: 35px; border: 1px solid #111; margin-bottom: 30px; }
+.box-title { color: #fff; font-size: 13px; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 25px; border-left: 2px solid #d4af37; padding-left: 15px; }
+.schedule-list p { color: #aaa; margin-bottom: 10px; display: flex; justify-content: space-between; }
+.schedule-list span { color: #fff; font-weight: bold; }
+
+.social-grid-large { display: flex; gap: 25px; }
+.social-grid-large a { font-size: 24px; color: #d4af37 !important; transition: 0.4s; }
+.social-grid-large a:hover { color: #fff !important; transform: scale(1.2); }
+.contacts-footer-action { text-align: center; margin-top: 60px; }
+
+/* ===== 12. ФУТЕР ===== */
+.footer { flex-shrink: 0; background: #000; border-top: 1px solid #1a1a1a; padding: 50px 0 30px; text-align: center; }
+.footer-logo { color: #d4af37 !important; font-size: 22px; font-weight: 700; margin-bottom: 20px; display: inline-block; text-transform: uppercase; }
+.footer-nav a { margin: 0 15px; font-size: 11px; color: #888 !important; text-transform: uppercase; }
+.footer-nav a:hover { color: #d4af37 !important; }
+.footer-copy { color: #444; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; }
+
+/* ===== 13. АДАПТИВНІСТЬ ===== */
+@media (max-width: 1024px) {
+    .cards { grid-template-columns: repeat(2, 1fr); }
+    .hero-container, .product-detail-flex, .contacts-grid-main { flex-direction: column; text-align: center; }
+    .hero-text p { margin: 0 auto 30px; }
+    .hero-img-wrapper { justify-content: center; }
+    .hero-img-wrapper img { width: 100%; max-width: 400px; height: 400px; }
+    .product-detail-image, .product-detail-info { width: 100%; }
+    .product-horizontal-card { flex-direction: column !important; height: auto !important; }
+    .product-img-side { flex: 0 0 250px !important; }
+    .newsletter-form { flex-direction: column; }
+    .contacts-grid-main { grid-template-columns: 1fr; gap: 50px; }
 }
 
-.luxe-btn:hover {
-    background: #d4af37;
-    color: #000 !important;
-}
-
-/* ===== 3. HEADER ===== */
-.main-header {
-    border-bottom: 1px solid #111;
-    background-color: #000;
-}
-
-.header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 0;
-}
-
-.nav-link {
-    color: #d4af37;
-    margin-left: 30px;
-    font-size: 13px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-}
-
-.nav-link:hover { color: white; }
-
-/* ===== 4. СТОРІНКА ДЕТАЛЕЙ ТОВАРУ (Точно за макетом) ===== */
-.product-detail-flex {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 60px;
-    margin: 60px 0;
-}
-
-.product-detail-image {
-    flex: 1;
-    max-width: 500px;
-}
-
-.product-detail-image img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-.product-detail-info { flex: 1; }
-
-.product-detail-info h1 {
-    font-size: 48px;
-    margin: 0 0 20px 0;
-    line-height: 1.1;
-}
-
-.detail-price {
-    font-size: 24px;
-    color: #d4af37;
-    margin-bottom: 40px;
-}
-
-.detail-description {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 30px;
-}
-
-.desc-title {
-    font-size: 16px;
-    color: #fff;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-}
-
-.desc-text {
-    color: rgba(255, 255, 255, 0.7);
-    line-height: 1.8;
-    font-size: 16px;
-    margin-bottom: 50px;
-}
-
-.back-link-container { margin: 40px 0; }
-.back-to-list-link { color: #d4af37; font-size: 14px; opacity: 0.7; }
-.back-to-list-link:hover { opacity: 1; }
-
-/* ===== 5. СТИЛІ ДЛЯ ІНШИХ СТОРІНОК (Hero, Каталог) ===== */
-.hero { padding: 80px 0; }
-.hero-text h1 { font-size: 64px; margin-bottom: 30px; }
-
-/* Адаптивність */
-@media (max-width: 900px) {
-    .product-detail-flex { flex-direction: column; align-items: center; text-align: center; }
-}
-
-/* ===== 1. ОСНОВА ===== */
-* { box-sizing: border-box; }
-
-body.dark-theme {
-    margin: 0;
-    font-family: 'Playfair Display', serif;
-    background: #000;
-    color: #f1f1f1;
-    line-height: 1.6;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.gold-text { color: #d4af37 !important; }
-
-/* ===== 2. УНІВЕРСАЛЬНА КНОПКА (Для всіх сторінок) ===== */
-.luxe-btn {
-    display: inline-block;
-    padding: 15px 45px;
-    border: 1px solid #d4af37;
-    color: #d4af37 !important;
-    background: transparent;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 12px;
-    font-family: inherit;
-    cursor: pointer;
-    transition: 0.3s;
-    text-decoration: none;
-}
-
-.luxe-btn:hover {
-    background: #d4af37;
-    color: #000 !important;
-}
-
-/* ===== 3. ШАПКА ===== */
-.main-header { border-bottom: 1px solid #111; }
-.header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 0;
-}
-.nav-link {
-    color: #d4af37;
-    margin-left: 30px;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 13px;
-}
-
-/* ===== 4. ДЕТАЛІ ТОВАРУ ===== */
-.product-detail-flex {
-    display: flex;
-    gap: 60px;
-    margin: 60px 0;
-    align-items: flex-start;
-}
-
-.product-detail-image { flex: 1; max-width: 500px; }
-.product-detail-image img { width: 100%; height: auto; }
-
-/* Стиль для порожнього фото, який ми прибрали з HTML */
-.image-placeholder-box {
-    background: #111;
-    height: 400px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #444;
-    border: 1px solid #222;
-}
-
-.product-detail-info { flex: 1; }
-.detail-price { font-size: 24px; color: #d4af37; margin-bottom: 40px; }
-.detail-description { border-top: 1px solid #222; padding-top: 30px; }
-.desc-title { text-transform: uppercase; font-size: 16px; margin-bottom: 20px; }
-.desc-text { color: #aaa; margin-bottom: 50px; }
-
-/* Посилання назад */
-.back-link-container { margin: 40px 0; }
-.back-to-list-link { color: #d4af37; text-decoration: none; opacity: 0.6; }
-.back-to-list-link:hover { opacity: 1; }
-
-/* Адаптивність */
-@media (max-width: 900px) {
-    .product-detail-flex { flex-direction: column; text-align: center; }
-    .product-detail-image { max-width: 100%; }
+@media (max-width: 600px) {
+    .cards { grid-template-columns: 1fr; }
+    .hero-text h1 { font-size: 32px; }
 }

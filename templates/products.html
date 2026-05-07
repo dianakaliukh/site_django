@@ -1,48 +1,32 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}{{ category.name }} | LuxeCharm{% endblock %}
-
 {% block content %}
-<div class="container">
-    <h1 class="cat-title">{{ category.name }}</h1>
+<section class="products-selection">
+    <div class="container">
+        <h1 class="cat-title">{{ category.name|upper }}</h1>
 
-    <div class="products-grid">
-        {% for product in products %}
-            <div class="product-card">
+        <div class="product-horizontal-list">
+            {% for product in products %}
+            <a href="{% url 'product_detail' product.pk %}" class="product-card-link">
+                <div class="product-horizontal-card">
 
-                <!-- ЛІВА ЧАСТИНА: ФОТО -->
-                <div class="product-image">
-                    {% if product.image %}
-                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
-                    {% else %}
-                        <div class="no-photo-box">Фото очікується</div>
-                    {% endif %}
-                </div>
-
-                <!-- ПРАВА ЧАСТИНА: ІНФОРМАЦІЯ -->
-                <div class="product-info">
-                    <h3 class="gold-text">{{ product.name }}</h3>
-
-                    <p class="product-description">
-                        Витончена ювелірна робота від LuxeCharm, створена для підкреслення вашої винятковості.
-                    </p>
-
-                    <div class="price">{{ product.price }} грн</div>
-
-                    <div class="product-buttons">
-                        <!-- Кнопка КУПИТИ (візуальна, поки не активна) -->
-                        <button class="btn-buy" disabled>Купити</button>
-
-                        <!-- Кнопка ДЕТАЛЬНІШЕ (тепер виглядає як кнопка) -->
-                        <a href="{% url 'product_detail' product.pk %}" class="btn-detail-outline">Детальніше</a>
+                    <div class="product-img-side">
+                        {% if product.image %}
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                        {% endif %}
                     </div>
-                </div>
 
-            </div>
-        {% empty %}
-            <p class="product-description" style="text-align: center; padding: 50px;">Товарів у цій категорії поки немає.</p>
-        {% endfor %}
+                    <div class="product-info-side">
+                        <h3>{{ product.name }}</h3>
+                        <p class="product-desc-short">{{ product.description|truncatewords:20 }}</p>
+                        <div class="product-price">{{ product.price }} грн</div>
+                    </div>
+
+                </div>
+            </a>
+            {% endfor %}
+        </div>
     </div>
-</div>
+</section>
 {% endblock %}
