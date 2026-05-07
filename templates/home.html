@@ -10,7 +10,7 @@
         <div class="hero-text">
             <h1>Елегантність у кожній деталі</h1>
             <p>Ми перетворюємо благородні метали та сяючі камені на ваші персональні талісмани. Наші вироби — це симбіоз позачасової класики та сміливих сучасних трендів. Обирайте аксесуари, які стануть ідеальним продовженням вашої винятковості.</p>
-            <a href="/catalog/" class="btn">ПЕРЕЙТИ ДО КАТАЛОГУ →</a>
+            <a href="{% url 'catalog' %}" class="luxe-btn">Перейти до каталогу</a>
         </div>
         <div class="hero-img-wrapper">
             <img src="{% static 'images/hero1.jpg' %}" alt="Jewelry">
@@ -56,7 +56,7 @@
 
             <div class="card">
                 <div class="card-inner">
-                    <img src="{% static 'images/ring1.jpg' %}" alt="Кільця">
+                    <img src="{% static 'images/ring11.jpg' %}" alt="Кільця">
                     <!-- Посилання тепер тільки на кнопці-назві -->
                     <a href="{% url 'product_detail' 1 %}" class="card-title-link">
                         <div class="card-title-frame">
@@ -69,7 +69,7 @@
             <div class="card">
                 <div class="card-inner">
                     <img src="{% static 'images/earrings1.jpg' %}" alt="Сережки">
-                    <a href="{% url 'product_detail' 36 %}" class="card-title-link">
+                    <a href="{% url 'product_detail' 10 %}" class="card-title-link">
                         <div class="card-title-frame">
                             <h3>Золоті сережки "Каплі"</h3>
                         </div>
@@ -79,7 +79,7 @@
 
             <div class="card">
                 <div class="card-inner">
-                    <img src="{% static 'images/necklace1.jpg' %}" alt="Підвіски">
+                    <img src="{% static 'images/1234.jpg' %}" alt="Підвіски">
                     <a href="{% url 'product_detail' 34 %}" class="card-title-link">
                         <div class="card-title-frame">
                             <h3>Підвіска з білого золота</h3>

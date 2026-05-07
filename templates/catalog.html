@@ -4,15 +4,16 @@
 {% block title %}Каталог | LuxeCharm{% endblock %}
 
 {% block content %}
-<section class="categories">
+<!-- Додано клас catalog-section, щоб спрацював CSS -->
+<section class="categories catalog-section">
     <div class="container">
         <h2 class="cat-title">КАТЕГОРІЇ</h2>
 
         <div class="cards">
             {% for category in categories %}
-            <a href="/catalog/{{ category.id }}/" class="card">
+            <!-- Додано клас card-title-link для правильної підсвітки -->
+            <a href="/catalog/{{ category.id }}/" class="card card-title-link">
                 <div class="card-inner">
-                    <!-- Логіка вибору фото за назвою категорії -->
                     {% if category.name == "Кільця" %}
                         <img src="{% static 'images/ring.jpg' %}" alt="Кільця">
                     {% elif category.name == "Сережки" %}
