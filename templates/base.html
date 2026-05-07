@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}LuxeCharm{% endblock %}</title>
+
+    <!-- Зовнішні ресурси -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Твій єдиний файл стилів -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="dark-theme">
+
+<header>
+    <div class="container header-content">
+        <h2 class="main-logo">LuxeCharm</h2>
+        <nav>
+            <a href="/">ГОЛОВНА</a>
+            <a href="/catalog/">КАТАЛОГ</a>
+            <a href="/contacts/">КОНТАКТИ</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <a href="/" class="footer-logo">LuxeCharm</a>
+            <nav class="footer-nav">
+                <a href="/">ГОЛОВНА</a>
+                <a href="/catalog/">КАТАЛОГ</a>
+                <a href="/contacts/">КОНТАКТИ</a>
+            </nav>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copy">&copy; 2026 LuxeCharm. Усі права захищені.</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

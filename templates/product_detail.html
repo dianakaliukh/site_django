@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ product.name }} | LuxeCharm</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="dark-theme">
+
+<header class="main-header">
+    <div class="container header-content">
+        <h2 class="gold-text">LuxeCharm</h2>
+        <nav>
+            <a href="{% url 'home' %}" class="nav-link">Головна</a>
+            <a href="{% url 'catalog' %}" class="nav-link">Каталог</a>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
+    <div class="product-detail-flex">
+        <!-- Фото -->
+        <div class="product-detail-image">
+            {% if product.image %}
+                <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            {% else %}
+                <div class="image-placeholder-box">Фото очікується</div>
+            {% endif %}
+        </div>
+
+        <!-- Опис -->
+        <div class="product-detail-info">
+            <h1 class="gold-text">{{ product.name }}</h1>
+            <p class="detail-price">Ціна: {{ product.price }} грн</p>
+
+            <div class="detail-description">
+                <h3 class="desc-title">Детальний опис товару:</h3>
+                <p class="desc-text">{{ product.description }}</p>
+            </div>
+
+            <!-- Універсальна кнопка -->
+            <button class="luxe-btn">Додати у кошик</button>
+        </div>
+    </div>
+
+    <div class="back-link-container">
+        <a href="{% url 'catalog' %}" class="back-to-list-link">← Повернутися до списку</a>
+    </div>
+</div>
+
+</body>
+</html>
