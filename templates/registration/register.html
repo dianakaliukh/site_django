@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Реєстрація | LuxeCharm{% endblock %}
+
+{% block content %}
+<section class="container">
+    <h1 class="cat-title">РЕЄСТРАЦІЯ</h1>
+    
+    <div class="auth-form-container">
+        <form method="post" class="luxe-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="luxe-btn">Створити акаунт</button>
+        </form>
+        
+        <div class="auth-links">
+            <p>Вже маєте акаунт? <a href="{% url 'login' %}" class="back-link">Увійти</a></p>
+        </div>
+    </div>
+</section>
+{% endblock %}

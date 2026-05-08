@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Вхід | LuxeCharm{% endblock %}
+
+{% block content %}
+<section class="container">
+    <h1 class="cat-title">ВХІД У СИСТЕМУ</h1>
+    
+    <div class="auth-form-container">
+        <form method="post" class="luxe-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="luxe-btn">Увійти</button>
+        </form>
+        
+        <div class="auth-links">
+            <p><a href="{% url 'password_reset' %}" class="back-link">Забули пароль?</a></p>
+            <p>Немає акаунту? <a href="{% url 'register' %}" class="back-link">Зареєструватися</a></p>
+        </div>
+    </div>
+</section>
+{% endblock %}
