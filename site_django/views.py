@@ -1,7 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Avg
 from django.contrib import messages
-from .models import Product, Category, Review, NewsletterSubscription
+from django.contrib.auth.forms import UserCreationForm  # Для реєстрації
+from django.contrib.auth.decorators import login_required  # Для захисту профілю
+from .models import Product, Category, Review, NewsletterSubscription, Order
 
 
 # === ГОЛОВНА СТОРІНКА ===
@@ -71,7 +73,6 @@ def subscribe_newsletter(request):
 
 # === КОШИК (CART) ===
 
-# Додати в кошик
 def cart_add(request, product_id):
     cart = request.session.get('cart', {})
     product_id_str = str(product_id)
@@ -86,21 +87,24 @@ def cart_add(request, product_id):
     return redirect('cart_detail')
 
 
-# Сторінка кошика
 def cart_detail(request):
     cart = request.session.get('cart', {})
     cart_items = []
     total_price = 0
 
     for product_id, quantity in cart.items():
-        product = get_object_or_404(Product, id=product_id)
-        item_total = product.price * quantity
-        total_price += item_total
-        cart_items.append({
-            'product': product,
-            'quantity': quantity,
-            'total': item_total
-        })
+        # Додана обробка помилки, якщо товар був видалений з БД, але лишився в сесії
+        try:
+            product = Product.objects.get(id=product_id)
+            item_total = product.price * quantity
+            total_price += item_total
+            cart_items.append({
+                'product': product,
+                'quantity': quantity,
+                'total': item_total
+            })
+        except Product.DoesNotExist:
+            continue
 
     return render(request, 'cart.html', {
         'cart_items': cart_items,
@@ -108,7 +112,6 @@ def cart_detail(request):
     })
 
 
-# Видалити з кошика
 def cart_remove(request, product_id):
     cart = request.session.get('cart', {})
     product_id_str = str(product_id)
@@ -119,6 +122,36 @@ def cart_remove(request, product_id):
         messages.success(request, "Товар видалено з кошика")
 
     return redirect('cart_detail')
+
+
+# === АУТЕНТИФІКАЦІЯ ТА ПРОФІЛЬ (Лабораторна 8) ===
+
+# Реєстрація
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Акаунт створено! Тепер ви можете увійти.")
+            return redirect('login')
+    else:
+        form = UserCreationForm()
+    return render(request, 'registration/register.html', {'form': form})
+
+
+# Особистий кабінет
+@login_required
+def profile(request):
+    if request.user.is_staff:
+        # Адмін бачить замовлення всіх користувачів
+        orders = Order.objects.all().order_by('-created_at')
+    else:
+        # Звичайний юзер бачить тільки свої
+        orders = Order.objects.filter(user=request.user).order_by('-created_at')
+
+    return render(request, 'profile.html', {
+        'orders': orders
+    })
 
 
 # === КОНТАКТИ ===

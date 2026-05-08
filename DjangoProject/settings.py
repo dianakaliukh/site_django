@@ -16,7 +16,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'site_django.apps.SiteDjangoConfig',
+    'site_django.apps.SiteDjangoConfig', # Твій додаток
 ]
 
 MIDDLEWARE = [
@@ -34,11 +34,11 @@ ROOT_URLCONF = 'DjangoProject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -74,9 +74,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'uk-ua' # Змінив на українську для зручності
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Kyiv' # Змінив часовий пояс
 
 USE_I18N = True
 
@@ -89,6 +89,17 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-# Додаємо налаштування для медіа (щоб фото товарів з'явилися)
+# Медіа-файли
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+# ===== НАЛАШТУВАННЯ ДЛЯ ЛАБОРАТОРНОЇ №8 =====
+
+# Куди перенаправляти після входу/виходу
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
+
+# Емуляція відправки Email в консоль (для скидання пароля)
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

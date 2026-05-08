@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import Category, Product, Order
+from .models import Category, Product, Order, Review, NewsletterSubscription
 
-# Налаштування заголовків адмінки (опціонально, для стилю)
+# Налаштування заголовків адмінки
 admin.site.site_header = "LuxeCharm Administration"
 admin.site.site_title = "LuxeCharm Ювелірні вироби"
 admin.site.index_title = "Панель керування магазином"
@@ -10,31 +10,38 @@ admin.site.index_title = "Панель керування магазином"
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'created_at')
-    search_fields = ('name',)  # Пошук по назві категорії
+    search_fields = ('name',)
     list_filter = ('created_at',)
 
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    # Додаємо is_popular та is_active у список
     list_display = ('name', 'price', 'category', 'is_popular', 'is_active', 'created_at')
-
-    # Дозволяємо редагувати популярність та активність прямо зі списку (дуже зручно!)
     list_editable = ('is_popular', 'is_active', 'price')
-
-    # Фільтри збоку для швидкого сортування
     list_filter = ('category', 'is_popular', 'is_active', 'created_at')
-
-    # Пошук по назві та опису
     search_fields = ('name', 'description')
-
-    # Автоматичне групування полів у формі редагування
     fields = ('name', 'category', 'price', 'description', 'image', ('is_popular', 'is_active'))
 
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('customer_name', 'product', 'created_at')
-    list_filter = ('created_at', 'product')
-    search_fields = ('customer_name', 'product__name')
-    readonly_fields = ('created_at',)  # Замовлення краще не редагувати вручну
+    # ВИПРАВЛЕНО: 'customer_name' замінено на 'user'
+    list_display = ('id', 'user', 'product', 'total_price', 'is_completed', 'created_at')
+    list_filter = ('is_completed', 'created_at', 'product')
+    search_fields = ('user__username', 'product__name')
+    readonly_fields = ('created_at',)
+    list_editable = ('is_completed',) # Дозволяє адміну швидко відмічати виконані замовлення
+
+
+@admin.register(Review)
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ('product', 'rating', 'created_at')
+    list_filter = ('rating', 'created_at')
+    readonly_fields = ('created_at',)
+
+
+@admin.register(NewsletterSubscription)
+class NewsletterAdmin(admin.ModelAdmin):
+    list_display = ('email', 'subscribed_at')
+    search_fields = ('email',)
+    readonly_fields = ('subscribed_at',)

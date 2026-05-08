@@ -1,5 +1,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.contrib.auth.models import User  # Імпортуємо стандартну модель користувача
+
 
 # Категорія (Кільця, Сережки, Браслети тощо)
 class Category(models.Model):
@@ -24,7 +26,6 @@ class Product(models.Model):
     image = models.ImageField(upload_to='products/', null=True, blank=True, verbose_name="Зображення товару")
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products', verbose_name="Категорія")
 
-    # НОВІ ПОЛЯ
     is_popular = models.BooleanField(default=False, verbose_name="Популярний товар (на головну)")
     is_active = models.BooleanField(default=True, verbose_name="Активний (відображати на сайті)")
 
@@ -39,22 +40,31 @@ class Product(models.Model):
         verbose_name_plural = "Товари"
 
 
-# Замовлення
+# ОНОВЛЕНА МОДЕЛЬ ЗАМОВЛЕННЯ (Лабораторна 8)
 class Order(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name="Товар")
-    customer_name = models.CharField(max_length=100, verbose_name="Ім'я клієнта")
-    created_at = models.DateTimeField(auto_now_add=True)
+    # Прив'язуємо замовлення до користувача
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='orders', verbose_name="Клієнт")
+    # Додаємо можливість зберігати кілька товарів у текстовому вигляді (або один основний)
+    # Для простоти лаби залишимо зв'язок з одним продуктом, але додамо суму
+    product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True, verbose_name="Товар")
+    total_price = models.DecimalField(max_digits=10, decimal_places=2, default=0, verbose_name="Загальна вартість")
+
+    # Статус замовлення
+    is_completed = models.BooleanField(default=False, verbose_name="Виконано")
+
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата замовлення")
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"Замовлення: {self.customer_name} ({self.product.name})"
+        return f"Замовлення №{self.id} від {self.user.username}"
 
     class Meta:
         verbose_name = "Замовлення"
         verbose_name_plural = "Замовлення"
+        ordering = ['-created_at']
 
 
-# НОВА МОДЕЛЬ: Оцінка товару (Лабораторна 7)
+# Оцінка товару
 class Review(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='reviews', verbose_name="Товар")
     rating = models.PositiveSmallIntegerField(
@@ -69,7 +79,7 @@ class Review(models.Model):
         ordering = ['-created_at']
 
 
-# НОВА МОДЕЛЬ: Підписка на розсилку (Лабораторна 7)
+# Підписка на розсилку
 class NewsletterSubscription(models.Model):
     email = models.EmailField(unique=True, verbose_name="Email для розсилки")
     subscribed_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата підписки")
